@@ -20,7 +20,6 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - GitHub repository created with collaborators.
   - Updated README.md with Problem Statement, Needs Analysis, and Data Models.
   - An initial `api.yaml` file (or Postman collection) that lists all planned endpoints (e.g., `/users`, `/items`).
-  - Initial project proposal (Chapters 1 & 2).
 - **Checklist:**
   - [ ] Patrice Jessie Ricarte created repo
   - [ ] Added collaborators (Gaston, Durano, Loking)
@@ -28,7 +27,6 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - [ ] Updated README.md
   - [ ] Wrote project intro + problem + solution
   - [ ] Added Data Models draft
-  - [ ] Completed Chapters 1 & 2
   - [ ] Create `api.yaml` and add endpoints
   - [ ] Commit and push all files to GitHub
 
