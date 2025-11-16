@@ -10,9 +10,48 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
 
 ### Milestone 1 (Nov Week 1): Project Setup & Initial Proposal
 
-- **What we'll do:**
-  - Write the initial project description and problem statement.
-  - Draft basic data models (Users, Items, Borrow Records).
+1. Project Description
+     The Equipment Borrow and Return API is a system that tracks equipment loans in academic departments. It replaces manual logs by managing equipment availability, borrower information, and loan history.
+   
+1.1 Problem Statement
+     Academic offices still use paper logs for equipment lending, causing problems like lost or wrong records, unclear item availability, and no central history. Manual logs lead to errors and poor accountability.
+
+1.2 Solution
+    An API is needed to track borrowers and their borrowing history, show equipment availability, and store borrowing and return logs. 
+    Its CORE FEATURES are:
+    - Add Equipment
+    - List Equipment
+    - Track Borrowing
+    - Record Returns
+    - Store Users
+    - Maintain Item Status (Available, Borrowed, Returned) 
+    Its CORE ENDPOINTS are:
+    a. /items (GET) - List all equipment.
+    b. /items/add (POST) - Add new equipment.
+    c. /borrow (POST) - Submit borrow request.
+    d. /returns (POST) - Mark item as returned.
+    e. /users (GET) - List all users.
+    
+1.3 Data Models (Draft)
+    Users Table
+      id: Integer (Primary Key)
+      name: String
+      email: String
+      role: String
+    Items Table
+      id: Integer (Primary Key)
+      name: String
+      category: String
+      status: String ("Available" or "Borrowed)
+      description: String
+    BorrowRecords Table
+      id: Integer (Primary Key)
+      user_id: Integer (Foreign Key)
+      item_id: Integer (Foreign Key)
+      date_borrowed: Date
+      date_returned: Date (Nullable)
+      status: String ("Borrowed", "Returned)
+    
   - Set up the GitHub repository and add team collaborators.
   - Fork repositories for individual development.
   - Finalize the project topic: Equipment Borrow and Return API.
