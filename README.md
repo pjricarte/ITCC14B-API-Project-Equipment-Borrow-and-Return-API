@@ -50,8 +50,8 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - api_documentation.yaml (or Postman collection) with request/response examples.
   - README updated with setup instructions.
 - **Checklist:**
-  - [ ] Virtual environment created
-  - [ ] Flask + database installed
+  - [x] Virtual environment created
+  - [x] Flask + database installed
   - [ ] /items GET implemented
   - [ ] /items/add POST implemented
   - [ ] Swagger/OpenAPI file created
