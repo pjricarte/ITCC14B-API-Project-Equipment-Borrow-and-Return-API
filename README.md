@@ -38,17 +38,17 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
 ### Milestone 2 (Nov Week 2): API Foundation & Basic Documentation
 
 - **What we'll do:**
-  - Initialize Flask project (virtual environment, dependencies).
-  - Set up SQLite
-  - Implement basic endpoints:
+  - Initialize Flask project (virtual environment, dependencies). [STATUS: DONE]
+  - Set up SQLite [STATUS: INITIALLY DONE]
+  - Implement basic endpoints: [STATUS: DONE]
     - /items → list all items
     - /items/add → add new equipment
-  - Start writing OpenAPI (Swagger) documentation.
+  - Start writing OpenAPI (Swagger) documentation. [STATUS: DONE]
   - Improve Git flow using feature branches and organized commits.
 - **Deliverables:**
-  - Running Flask server with list and create working for Items.
-  - api_documentation.yaml (or Postman collection) with request/response examples.
-  - README updated with setup instructions.
+  - Running Flask server with list and create working for Items. [STATUS: DONE]
+  - api_documentation.yaml (or Postman collection) with request/response examples. [STATUS: DONE]
+  - README updated with setup instructions. [STATUS: DONE]
 - **Checklist:**
   - [ ] Virtual environment created
   - [ ] Flask + database installed
