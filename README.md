@@ -27,13 +27,13 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - An initial `api.yaml` file (or Postman collection) that lists all planned endpoints (e.g., `/users`, `/items`). [STATUS: DONE]
 - **Checklist:**
   - [X] Patrice Jessie Ricarte created repo
-  - [/] Added collaborators (Gaston, Durano, Loking)
-  - [/] Members forked repository
-  - [/] Updated README.md
-  - [/] Wrote project intro + problem + solution
-  - [/] Added Data Models draft
-  - [/] Create `api.yaml` and add endpoints
-  - [/] Commit and push all files to GitHub
+  - [x] Added collaborators (Gaston, Durano, Loking)
+  - [x] Members forked repository
+  - [x] Updated README.md
+  - [x] Wrote project intro + problem + solution
+  - [x] Added Data Models draft
+  - [x] Create `api.yaml` and add endpoints
+  - [x] Commit and push all files to GitHub
 
 ### Milestone 2 (Nov Week 2): API Foundation & Basic Documentation
 
@@ -50,13 +50,13 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - api_documentation.yaml (or Postman collection) with request/response examples. [STATUS: DONE]
   - README updated with setup instructions. [STATUS: DONE]
 - **Checklist:**
-  - [ ] Virtual environment created
-  - [ ] Flask + database installed
-  - [ ] /items GET implemented
-  - [ ] /items/add POST implemented
-  - [ ] Swagger/OpenAPI file created
-  - [ ] Added examples (JSON) to docs
-  - [ ] Updated GitHub repository
+  - [x] Virtual environment created
+  - [x] Flask + database installed
+  - [x] /items GET implemented
+  - [x] /items/add POST implemented
+  - [x] Swagger/OpenAPI file created
+  - [x] Added examples (JSON) to docs
+  - [x] Updated GitHub repository
 
 ### Milestone 3 (Nov Week 3): Full Backend API
 
