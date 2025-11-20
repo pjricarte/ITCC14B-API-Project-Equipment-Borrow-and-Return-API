@@ -16,6 +16,7 @@ def add_item():
     new_item = Item(
         name=data["name"],
         category=data["category"],
+        amount=data.get("amount", 1),
         description=data.get("description", "")
     )
 
@@ -26,3 +27,11 @@ def add_item():
         "message": "Item added successfully!",
         "item_id": new_item.id
     }), 201
+    
+@items_bp.route("/items/<int:item_id>", methods=["GET"])
+def get_itemsID(item_id):
+    item = Item.query.get(item_id)
+    if item:
+        return jsonify(item.to_dict()), 200
+    else:
+        return jsonify({"message": "Item not found"}), 404

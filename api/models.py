@@ -7,6 +7,7 @@ class Item(db.Model):
     name = db.Column(db.String(100), nullable=False)
     category = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(20), default="available")
+    amount = db.Column(db.Integer, default=1)
     description = db.Column(db.String(200), nullable=True)
 
     def to_dict(self):
@@ -15,5 +16,6 @@ class Item(db.Model):
             "name": self.name,
             "category": self.category,
             "status": self.status,
+            "amount": self.amount,
             "description": self.description
         }

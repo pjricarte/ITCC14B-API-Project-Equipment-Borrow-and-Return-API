@@ -1,0 +1,28 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask / Python specific
+instance/
+*.sqlite3
+*.db
+
+# Environment
+venv/
+env/
+ENV/
+*.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.out
+*.err
+
+# MacOS
+.DS_Store
