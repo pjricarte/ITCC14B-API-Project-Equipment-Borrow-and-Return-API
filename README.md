@@ -81,17 +81,30 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
 ### Milestone 4 (Nov Week 4): Frontend Integration
 
 - **What you’ll do:**
-  - Build a simple UI (Plain JS or React) to call your API (list/create/claim).
-  - Handle loading and error states on the frontend.
-  - If presenting remotely, prepare ngrok for HTTPS URL (optional).
+  - Build a simple UI (Plain JS, React, or Flask templates) that interacts with your completed backend.
+  - Integrate the existing API endpoints from Milestones 2–3:
+       - List Items (GET /items)
+       - Add Item (POST /items/add)
+       - View Item Details (GET /items/<id>)
+       - Update Item (PATCH /items/<id>)
+       - Borrow Item (POST /borrow)
+       - Return Item (POST /returns)
+  - Use the data models and validation rules (already created in Milestone 3) so the frontend matches your backend constraints.
+  - Display seeded data from your seed script to test UI flows.
+  - Add frontend error and loading states that reflect actual API responses (400, 404, etc.).
+  - Optionally generate interactive API documentation using the OpenAPI spec.
 - **Deliverables:**
-  - Frontend that demonstrates key API flows.
-  - Instructions in README on how to run frontend + connect to API.
+  - A working frontend UI that uses your fully implemented backend features.
+  - At least 3 working flows demonstrated in the UI:
+       - Viewing equipment list (using real seeded data)
+       - Creating equipment
+       - Borrowing & returning items
 - **Checklist:**
-  - [ ] Frontend lists data
-  - [ ] Frontend creates data
-  - [ ] Frontend handles errors/loading
-  - [ ] Run steps documented
+  - [ ] Frontend loads and displays items from GET /items
+  - [ ] Frontend form for adding items using POST /items/add
+  - [ ] Borrow/Return actions using POST /borrow and POST /returns
+  - [ ] Display error messages from backend validation (Milestone 3)
+  - [ ] Frontend uses seeded sample data
 
 ### Milestone 5 (Optional, Dec Week 1): Containerization (Docker) for Easy Setup
 
