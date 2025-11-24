@@ -72,8 +72,17 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
 - **Checklist:**
   - [x] Added an amount field to the item document
   - [ ] All endpoints completed
+     - [x] /items GET implemented
+     - [x] /items POST implemented
      - [x] /items/<int:item_id> GET implemented
      - [x] /items/<int:item_id> PATCH implemented
+     - [x] /items/<int:item_id> DELETE implemented
+     - [x] /items/search GET implemented
+     - [x] /users POST implemented
+     - [x] /users GET implemented
+     - [ ] /borrow POST implemented
+     - [ ] /returns POST implemented
+     - [ ] /transactions GET implemented
   - [ ] Validation and error handling standardized
   - [ ] Sample (seed) data added
   - [ ] OpenAPI file validated
