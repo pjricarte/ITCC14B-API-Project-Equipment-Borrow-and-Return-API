@@ -1,0 +1,49 @@
+Things added:
+
+1. Updated /items POST method
+	- Changed the route from /items/add to simply /items.
+	- Added validation to handle missing or incomplete fields.
+	- Implemented a duplication check to prevent adding an item that already exists.
+
+2. Added DELETE method to /items/<int:item_id>
+	- Added error handling for cases where the specified item does not exist.
+	- Included a success message upon successful deletion of an item.
+
+3. Added /items/search GET method
+	- Implemented a search function that allows searching by name, category, description, or status.
+	- Updated and completed the corresponding YAML documentation.
+
+4. Added /users POST method
+	- Added user registration function 
+	- Added validation for required fields (username, email, password)
+	- Added duplicate checks (username or email must be unique)
+	- Returns created user with 201 response
+
+5. Added /users GET method
+	- Added listing of all registered users
+
+6. Added User model in database
+	- included hashed password using Werkzeug
+
+7. Updated requirements.txt
+	- added pip install Werkzeug
+
+Need To Fix After Changes:
+1. Update the YAML file because the components/schemas were not modified during my rework. There may also be mistakes since I’m not familiar with YAML.
+
+
+json for testing:
+{
+  "name": "Plastic Chair",
+  "category": "Furniture",
+  "amount": "100",
+  "description": "It is a blue plastic chair",
+}
+
+{
+  "username": "johndoe",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "johndoe@example.com",
+  "password": "SecureP@ss123"
+}

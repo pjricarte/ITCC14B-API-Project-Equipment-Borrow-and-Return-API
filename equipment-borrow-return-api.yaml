@@ -69,7 +69,6 @@ paths:
         "404":
           description: Item not found
 
-  /items/<int:item_id>:
     patch:
       tags: [Items]
       summary: Update item details
@@ -103,12 +102,53 @@ paths:
           name: item_id
           required: true
           schema:
-            type: string
+            type: integer
       responses:
         "200":
           description: Item deleted
         "404":
           description: Item not found
+
+  /items/search:
+    get:
+      tags: [Items]
+      summary: Search items by name, category, description or status
+      descriotion: Searches for items using a query string. The search will match partially and case-insensitively against the item's name, category, description, or status.
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of matching items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Item"
+        "400":
+          description: Missing or invalid search query
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Search term is required."
+          "404":
+          description: o items match the search criteria.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "No items found matching the search criteria."
 
   /users:
     post:
@@ -128,7 +168,15 @@ paths:
               schema:
                 $ref: "#/components/schemas/User"
         "400":
-          description: Invalid input
+          description: Invalid input or username/email already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Username or email already exists."
 
     get:
       tags: [Users]
@@ -142,6 +190,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/User"
+        "404":
+          description: No users found
 
   /borrow:
     post:
