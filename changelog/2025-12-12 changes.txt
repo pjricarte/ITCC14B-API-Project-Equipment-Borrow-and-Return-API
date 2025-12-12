@@ -1,14 +1,14 @@
 IMPLEMENTED FEATURES:
 
-1. POST /borrow/<int:item_id>
+1. POST /borrow
 	- Endpoint for borrowing items.
 	- Error handling included.
-	- Requires user_id in the request body (JSON).
+	- Requires user_id and item_id in the request body (JSON).
 
-2. POST /returns/<int:item_id>
+2. POST /returns
 	- Endpoint for returning items.
 	- Error handling included.
-	- Requires user_id in the request body (JSON).
+	- Requires user_id and item_id in the request body (JSON).
 
 3. GET /transactions
 	- Retrieves all transactions (borrow and return) in the system.
@@ -63,5 +63,6 @@ JSON FOR TESTING:
 }
 	
 {
-  "user_id": 1
+  "user_id": 1,
+  "item_id": 1
 }

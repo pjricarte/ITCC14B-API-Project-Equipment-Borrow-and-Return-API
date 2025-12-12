@@ -161,14 +161,15 @@ def get_users():
     if not users:
         return jsonify({"message": "No users found."}), 404
     return jsonify([user.to_dict() for user in users]), 200       
-
-@borrow_bp.route("/borrow/<int:item_id>", methods=["POST"])
-def borrow_item(item_id):
+    
+@borrow_bp.route("/borrow", methods=["POST"])
+def borrow_item():
     data = request.get_json()
     user_id = data.get("user_id")
+    item_id = data.get("item_id")
     
-    if not user_id:
-        return jsonify({"message": "User is required."}), 400
+    if not user_id or not item_id:
+        return jsonify({"message": "Both 'user_id' and 'item_id' are required."}), 400
     
     item = Item.query.get(item_id)
     if not item:
@@ -184,22 +185,23 @@ def borrow_item(item_id):
     transaction = Transaction(
         user_id=user_id,
         item_id=item_id,
-        action ="borrow",
-        quantity = 1
+        action="borrow",
+        quantity=1  
     )
     db.session.add(transaction)
     db.session.commit()
     
     return jsonify({"message": "Item borrowed successfully!", "item": item.to_dict()}), 200
-    
-    
-@borrow_bp.route("/returns/<int:item_id>", methods=["POST"])
-def return_item(item_id):
+
+
+@borrow_bp.route("/returns", methods=["POST"])
+def return_item():
     data = request.get_json()
     user_id = data.get("user_id")
+    item_id = data.get("item_id")
     
-    if not user_id:
-        return jsonify({"message": "User is required."}), 400
+    if not user_id or not item_id:
+        return jsonify({"message": "Both 'user_id' and 'item_id' are required."}), 400
     
     borrow_count = Transaction.query.filter_by(
         user_id=user_id,
@@ -227,8 +229,8 @@ def return_item(item_id):
     transaction = Transaction(
         user_id=user_id,
         item_id=item_id,
-        action ="return",
-        quantity = 1
+        action="return",
+        quantity=1
     )
     
     db.session.add(transaction)

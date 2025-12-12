@@ -71,7 +71,7 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
   - OpenAPI documentation successfully validated using Swagger Editor without schema issues.
 - **Checklist:**
   - [x] Added an amount field to the item document
-  - [ ] All endpoints completed
+  - [x] All endpoints completed
      - [x] /items GET implemented
      - [x] /items POST implemented
      - [x] /items/<int:item_id> GET implemented
@@ -80,11 +80,13 @@ Note: **GitHub Profile/name be must your full name or family name for grading**
      - [x] /items/search GET implemented
      - [x] /users POST implemented
      - [x] /users GET implemented
-     - [ ] /borrow POST implemented
-     - [ ] /returns POST implemented
-     - [ ] /transactions GET implemented
+     - [x] /borrow> POST implemented
+     - [x] /returns> POST implemented
+     - [x] /transactions GET implemented
+     - [x] /transactions/users/<int:user_id> GET implemented
+     - [x] /transactions/items/<int:item_id> GET implemented
   - [ ] Validation and error handling standardized
-  - [ ] Sample (seed) data added
+  - [x] Sample (seed) data added
   - [ ] OpenAPI file validated
 
 ### Milestone 4 (Nov Week 4): Frontend Integration
