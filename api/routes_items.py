@@ -1,8 +1,9 @@
 from flask import Blueprint, request, jsonify
-from .models import Item, User, db
+from .models import Item, User, Transaction, db
 
 items_bp = Blueprint("items", __name__)
 users_bp = Blueprint("users", __name__) 
+borrow_bp = Blueprint("borrow", __name__)
 
 
 @items_bp.route("/items", methods=["GET"])
@@ -52,7 +53,6 @@ def add_item():
     db.session.commit()
 
     return jsonify({"message": "Item added successfully.", "item": new_item.to_dict()}), 201
-
 
 
 @items_bp.route("/items/<int:item_id>", methods=["GET"])
@@ -161,3 +161,138 @@ def get_users():
     if not users:
         return jsonify({"message": "No users found."}), 404
     return jsonify([user.to_dict() for user in users]), 200       
+
+@borrow_bp.route("/borrow/<int:item_id>", methods=["POST"])
+def borrow_item(item_id):
+    data = request.get_json()
+    user_id = data.get("user_id")
+    
+    if not user_id:
+        return jsonify({"message": "User is required."}), 400
+    
+    item = Item.query.get(item_id)
+    if not item:
+        return jsonify({"message": "Item not found"}), 404
+    
+    if item.amount < 1:
+        return jsonify({"message": "Item not available"}), 400
+    
+    error = update_item_amount(item, item.amount - 1)
+    if error:
+        return jsonify(error[0]), error[1]
+    
+    transaction = Transaction(
+        user_id=user_id,
+        item_id=item_id,
+        action ="borrow",
+        quantity = 1
+    )
+    db.session.add(transaction)
+    db.session.commit()
+    
+    return jsonify({"message": "Item borrowed successfully!", "item": item.to_dict()}), 200
+    
+    
+@borrow_bp.route("/returns/<int:item_id>", methods=["POST"])
+def return_item(item_id):
+    data = request.get_json()
+    user_id = data.get("user_id")
+    
+    if not user_id:
+        return jsonify({"message": "User is required."}), 400
+    
+    borrow_count = Transaction.query.filter_by(
+        user_id=user_id,
+        item_id=item_id,
+        action="borrow"
+    ).count()
+    
+    return_count = Transaction.query.filter_by(
+        user_id=user_id,
+        item_id=item_id,
+        action="return"
+    ).count()
+    
+    if borrow_count <= return_count:
+        return jsonify({"message": "No borrowed item to return."}), 400
+
+    item = Item.query.get(item_id)
+    if not item:
+        return jsonify({"message": "Item not found"}), 404
+
+    error = update_item_amount(item, item.amount + 1)
+    if error:
+        return jsonify(error[0]), error[1]
+    
+    transaction = Transaction(
+        user_id=user_id,
+        item_id=item_id,
+        action ="return",
+        quantity = 1
+    )
+    
+    db.session.add(transaction)
+    db.session.commit()
+
+    return jsonify({"message": "Item returned successfully!", "item": item.to_dict()}), 200
+
+@borrow_bp.route("/transactions", methods=["GET"])
+def list_transactions():
+    transactions = Transaction.query.all()
+    if not transactions:
+        return jsonify({"message": "No transactions found."}), 404
+    
+    return jsonify([t.to_dict() for t in transactions]), 200
+    
+@borrow_bp.route("/transactions/users/<int:user_id>", methods=["GET"])
+def get_user_transactions(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    
+    transactions = Transaction.query.filter_by(user_id=user_id).all()
+    if not transactions:
+        return jsonify({"message": "No transactions found for this user."}), 404
+
+    return jsonify([t.to_dict() for t in transactions]), 200
+
+@borrow_bp.route("/transactions/items/<int:item_id>", methods=["GET"])
+def get_item_transactions(item_id):
+    item = Item.query.get(item_id)
+    if not item:
+        return jsonify({"message": "Item not found"}), 404
+
+    transactions = Transaction.query.filter_by(item_id=item_id).all()
+    if not transactions:
+        return jsonify({"message": "No transactions found for this item."}), 404
+
+    result = []
+    for t in transactions:
+        record = {
+            "id": t.id,
+            "action": t.action,
+            "quantity": t.quantity,
+            "timestamp": t.timestamp.isoformat() if t.timestamp else None,
+            "user": {
+                "id": t.user.id,
+                "username": t.user.username,
+                "first_name": t.user.first_name,
+                "last_name": t.user.last_name
+            } if t.user else None,
+            "item": {
+                "id": t.item.id,
+                "name": t.item.name,
+                "category": t.item.category
+            } if t.item else None
+        }
+        result.append(record)
+
+    return jsonify(result), 200
+
+def update_item_amount(item, new_amount):
+    if new_amount < 0:
+        return {"error": "'amount' must be non-negative"}, 400
+
+    item.amount = new_amount
+    db.session.commit()
+    return None

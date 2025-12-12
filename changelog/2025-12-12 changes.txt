@@ -1,0 +1,67 @@
+IMPLEMENTED FEATURES:
+
+1. POST /borrow/<int:item_id>
+	- Endpoint for borrowing items.
+	- Error handling included.
+	- Requires user_id in the request body (JSON).
+
+2. POST /returns/<int:item_id>
+	- Endpoint for returning items.
+	- Error handling included.
+	- Requires user_id in the request body (JSON).
+
+3. GET /transactions
+	- Retrieves all transactions (borrow and return) in the system.
+	- Error handling included.
+
+4. Transaction Model
+	- Added Transaction model to record all borrow/return actions with timestamps.
+
+5. Blueprints
+	- Created borrow_bp for borrowing and returning operations.
+	- Registered users_bp and borrow_bp in app.py.
+
+6. GET /transactions/items/<int:item_id>
+	- Shows all users who have borrowed a specific item, along with transaction details.
+	- Error handling included.
+
+7. GET /transactions/users/<int:user_id>
+	- Shows all transactions performed by a specific user.
+	- Error handling included.
+
+PENDING IMPROVEMENTS / TO-DO:
+
+1. YAML Specification Updates
+	- Update OpenAPI YAML file to reflect new endpoints and modified schemas.
+	- Incorporate updated components, including new error handling methods, response formats, and 
+	  any additional schema changes introduced during the code rework.
+	- Ensure /borrow, /returns, and /transactions endpoints accurately match implementation.
+
+2. Missing YAML Definitions
+	- /transactions/<int:item_id>
+	- /transactions/<int:user_id>
+
+3. Further Testing
+	- Conduct additional testing to account for potential edge cases and unforeseen scenarios that 
+	  may not have been considered during initial development.
+	- Ensure robustness, error handling, and data integrity across all endpoints
+
+JSON FOR TESTING:
+{
+  "name": "Plastic Chair",
+  "category": "Furniture",
+  "amount": "100",
+  "description": "It is a blue plastic chair"
+}
+
+{
+  "username": "johndoe",
+  "first_name": "John",
+  "last_name": "Doe",
+  "email": "johndoe@example.com",
+  "password": "SecureP@ss123"
+}
+	
+{
+  "user_id": 1
+}

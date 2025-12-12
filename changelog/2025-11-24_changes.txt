@@ -37,7 +37,7 @@ json for testing:
   "name": "Plastic Chair",
   "category": "Furniture",
   "amount": "100",
-  "description": "It is a blue plastic chair",
+  "description": "It is a blue plastic chair"
 }
 
 {
