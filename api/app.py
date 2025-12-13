@@ -9,8 +9,10 @@ def create_app():
 
     db.init_app(app)
 
-    from .routes_items import items_bp
+    from .routes_items import items_bp, users_bp, borrow_bp
     app.register_blueprint(items_bp)
+    app.register_blueprint(users_bp)
+    app.register_blueprint(borrow_bp)
 
     with app.app_context():
         db.create_all()
