@@ -1,6 +1,6 @@
 ## Project Milestones (Equipment Borrow and Return API)
 ## Members
-*Lists all your Members here and link their GitHub Profile* 
+
 <br/>
 Note: **GitHub Profile/name be must your full name or family name for grading** 
 1. [Daniel Durano](https://github.com/DanielDurano)
